@@ -99,4 +99,8 @@ class AboutSymbols < Neo::Koan
   # THINK ABOUT IT:
   #
   # Why is it not a good idea to dynamically create a lot of symbols?
+  # A:  They are immutable and stay in memory until program ends. Creating
+  #     a lot of symbols dynamically will hog memory especially if you only
+  #     plan to use them once. If you need to change them ever, then they
+  #     are probably not the best choice. Good for hash indexes and similar.
 end
