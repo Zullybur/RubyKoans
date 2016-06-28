@@ -31,6 +31,32 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
+  raise ArgumentError.new unless dice
+  score = 0
+  countArray = Array.new(6, 0)
+
+  # increment count of each die roll, zero indexing the dice
+  dice.each {|die| countArray[die-1] += 1}
+
+  # check for triples
+  (0..5).each do |die|
+    if countArray[die] >= 3
+      case die
+      when 0
+        score += 1000
+        countArray[die] -= 3
+      else
+        score += ((die + 1) * 100)
+        countArray[die] -= 3
+      end
+    end
+  end
+
+  # add up remaining points
+  score += countArray[0] * 100
+  score += countArray[4] * 50
+
+  return score
 end
 
 class AboutScoringProject < Neo::Koan
