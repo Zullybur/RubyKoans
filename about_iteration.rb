@@ -127,5 +127,9 @@ class AboutIteration < Neo::Koan
   # ANSWER:
   # File.open(path) do |file| probably acts as a 'with' statement,
   # closing the file resource after the code block completes.
+  # REFACTORED ANSWER:
+  # open(file_path) handles the 'bread slices', and takes the following code
+  # block as the 'meat' to handle sandwich code situations (basically what
+  # I said above, but with better lingo)
 
 end
