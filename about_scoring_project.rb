@@ -33,30 +33,24 @@ def score(dice)
   # You need to write this method
   raise ArgumentError.new unless dice
   score = 0
-  countArray = Array.new(6, 0)
 
-  # increment count of each die roll, zero indexing the dice
-  dice.each {|die| countArray[die-1] += 1}
+  # create hash of count of each die (credit: http://stackoverflow.com/questions/11603477/ruby-koans-scoring-project )
+  counts = dice.inject(Hash.new(0)) {|hash, num| hash[num] += 1; hash}
 
-  # check for triples
-  (0..5).each do |die|
-    if countArray[die] >= 3
-      case die
-      when 0
-        score += 1000
-        countArray[die] -= 3
-      else
-        score += ((die + 1) * 100)
-        countArray[die] -= 3
-      end
+  # score it
+  counts.each do |die, count|
+    trips, remainder = count / 3, count % 3
+
+    case die
+    when 1
+      score += (remainder * 100) + (trips * 1000)
+    when 5
+      score += (remainder * 50) + (trips * die * 100)
+    else
+      score += (trips * die * 100)
     end
   end
-
-  # add up remaining points
-  score += countArray[0] * 100
-  score += countArray[4] * 50
-
-  return score
+  score
 end
 
 class AboutScoringProject < Neo::Koan
