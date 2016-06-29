@@ -76,6 +76,9 @@ class AboutVariableScope < Neo::Koan
 
   # Meditate on the following: 
   # What is the difference between a class variable and instance variable?
+  #
+  # ANSWER:
+  # Class variables are equivalent of static, belong to class not objects
 
   # ------------------------------------------------------
   
@@ -112,3 +115,6 @@ end
 # 
 # What will $anywhere be down here, outside of the scope of the
 # AboutVariableScope class?
+#
+# ANSWER:
+# Global means global. It should be here.
