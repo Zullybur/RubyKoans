@@ -4,15 +4,9 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 class DiceSet
   attr_reader :values
-  def initialize
-    @rand = Random.new
-  end
 
   def roll(num)
-    @values = Array.new
-    (1..num).each do
-      @values << @rand.rand(1..6)
-    end
+    @values = (1..num).map { rand(1..6) }
   end
 end
 
